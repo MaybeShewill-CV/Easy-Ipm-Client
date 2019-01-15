@@ -13,10 +13,8 @@
 
 #include "common/log_utils/beecLogger.h"
 #include "common/file_system_utils/file_system_processor.h"
-#include "tracefile_parser/frametimeParser.h"
 
 using beec::common::file_system_utils::FileSystemProcessor;
-using beec::tracefile_parser::FrametimeParser;
 using beec::camera_model::CameraModel;
 using beec::ipm_model::AdaptiveIpmModel;
 
@@ -235,10 +233,6 @@ void IpmTransformWorker::init_frametime_parser(const std::string &frametime_path
     if (!FileSystemProcessor::is_file_exist(frametime_path)) {
         LOG(INFO) << "Frametime文件： " << frametime_path << " 不存在";
     }
-
-    _m_frametime_parser.reset();
-
-    _m_frametime_parser = FrametimeParser(frametime_path);
 }
 
 void IpmTransformWorker::process_single_image_within_multithread(const args &m_arg) {
@@ -272,13 +266,8 @@ void IpmTransformWorker::process_single_image_within_multithread(const args &m_a
 
     _m_ipm_model.set_image(distorition_image);
 
-    if (is_dynamic && _m_frametime_parser.contains_item(image_id)) {
-        auto imu_item = _m_frametime_parser[image_id];
-        _m_cam.set_dynamic();
-        _m_cam.update_camera_with_imu(imu_item);
-        _m_ipm_model.set_dynamic();
-        _m_ipm_model.set_camera(_m_cam);
-        _m_ipm_model.ipm_transform(true);
+    if (is_dynamic) {
+        LOG(ERROR) << "Not support for now and will be released soon";
     } else {
         _m_cam.set_static();
         _m_ipm_model.set_static();

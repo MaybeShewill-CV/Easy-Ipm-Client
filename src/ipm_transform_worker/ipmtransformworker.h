@@ -16,7 +16,6 @@
 #include "interface/ipmparameterparser.h"
 #include "ipm_model/adaptiveIpmModel.h"
 #include "camera_model/cameraModel.h"
-#include "tracefile_parser/frametimeParser.h"
 
 class IpmTransformWorker : public QObject
 {
@@ -83,8 +82,6 @@ private:
     beec::ipm_model::AdaptiveIpmModel _m_ipm_model;
 
     beec::camera_model::CameraModel _m_cam;
-
-    beec::tracefile_parser::FrametimeParser _m_frametime_parser;
 
     IpmParameterParser _m_ipm_para_parser;
 

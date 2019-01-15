@@ -15,7 +15,6 @@
 namespace beec {
 namespace camera_model {
 
-using beec::tracefile_parser::IMUAttitude;
 using beec::common::file_system_utils::FileSystemProcessor;
 
 const double DEG2RAD = 0.01745329252;
@@ -241,23 +240,6 @@ void CameraModel::undistortion_image(
     }
 
     cv::remap(src_image, dst_image, _m_distortion_remap_x, _m_distortion_remap_y, cv::INTER_CUBIC);
-}
-
-/***
- * 利用imu姿态动态更新相机姿态
- * @param attitude
- */
-void CameraModel::update_camera_with_imu(const IMUAttitude &attitude) {
-
-    auto imu_pitch = attitude.pitch;
-//    auto imu_yaw = attitude.yaw;  // yaw值不需要修改 统一默认为全部指向同一个方向
-    auto imu_roll = attitude.roll;
-    auto imu_hell_diff = attitude.hell_diff;
-
-    _m_pitch_angle_dynamic = _m_pitch_angle_base + imu_pitch * DEG2RAD;
-//    _m_yaw_angle_dynamic = _m_yaw_angle_base + imu_yaw * DEG2RAD;
-    _m_roll_angle_dynamic = _m_roll_angle_base + imu_roll * DEG2RAD;
-    _m_height_dynamic = _m_height_base + imu_hell_diff * 1000;
 }
 
 /***

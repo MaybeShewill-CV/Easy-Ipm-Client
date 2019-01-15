@@ -34,8 +34,6 @@ SOURCES += \
     camera_calibration/camerCalibrator.cpp \
     common/file_system_utils/file_system_processor.cpp \
     common/log_utils/beecLogger.cpp \
-    tracefile_parser/frametimeParser.cpp \
-    tracefile_parser/panotimebParser.cpp \
     ipm_transform_worker/ipmtransformworker.cpp
 
 HEADERS += \
@@ -45,8 +43,6 @@ HEADERS += \
     interface/ipmImageViewer.h \
     common/file_system_utils/file_system_processor.h \
     common/log_utils/beecLogger.h \
-    tracefile_parser/frametimeParser.h \
-    tracefile_parser/panotimebParser.h \
     camera_model/cameraModel.h \
     ipm_model/adaptiveIpmModel.h \
     ipm_transform_worker/ipmtransformworker.h \

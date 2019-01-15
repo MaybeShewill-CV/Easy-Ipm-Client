@@ -11,7 +11,6 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "tracefile_parser/frametimeParser.h"
 #include "interface/ipmparameterparser.h"
 
 namespace beec {
@@ -33,8 +32,6 @@ public:
     CameraModel(const CameraModel &cam);
 
     void set_camera(const CameraModel &cam);
-
-    void update_camera_with_imu(const beec::tracefile_parser::IMUAttitude &attitude);
 
     void set_k1(const double k1) {
         _m_k1 = k1;
