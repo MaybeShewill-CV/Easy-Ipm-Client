@@ -1,0 +1,10 @@
+%YAML:1.0
+---
+Parameters Type: Ipm Generate
+camera name: test_ccd
+calib file path: "/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/test_data/camera_calib.yml"
+calib image size: [ 2448, 2048 ]
+camera pitch: 1.6899999999999999e+01
+camera yaw: 0.
+vanish point: [ 1190., 800. ]
+ipm image size: [ 1280, 1280 ]
