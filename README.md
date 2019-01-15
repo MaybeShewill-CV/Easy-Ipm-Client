@@ -9,9 +9,9 @@ on Qt so it is convenient to compile on other platform.
 
 ## Inverse Perspective Map Model
 This repo implement the model supplement in the paper "Adaptive Inverse Perspective Mapping
-for Lane Map Generation with SLAM". Use the camera's motion information to
-implement an adaptive model for the IPM to accurately transform 
-camera images to bird’s-eye view images. The model's schematic diagram are
+for Lane Map Generation with SLAM".You may refer this https://ieeexplore.ieee.org/document/7734016 for details. Use the camera's motion information to
+implement an adaptive model for the IPM to accurately transform camera 
+images to bird’s-eye view images. The model's schematic diagram are
 as follows
 
 `Side view of the IPM model`
@@ -25,19 +25,24 @@ as follows
 ## Install && System information
 The system information and library used in this project are as follows:
 
-##### os: Ubuntu 16.04 LTS
-##### compiler: GCC 5.4 supported with c++ 11
-##### qt library: qt 5.6
-##### ide: qt creator 4.8
-##### boost: boost 1.58.0
-##### opencv: opencv 3.4
+**OS**: Ubuntu 16.04 LTS
+
+**Compiler**: GCC 5.4 supported with c++ 11
+
+**Qt Library**: qt 5.6
+
+**IDE**: qt creator 4.8
+
+**BOOST**: boost 1.58.0
+
+**OPENCV**: opencv 3.4
 
 To use this software you need first install qt library. You may follow
 the instruction [how_to_install_qt_lib](http://doc.qt.io/qt-5/gettingstarted.html)
 . Then you need opencv and boost installed on your local machine the two
 following instructions will lead you to the how to page. 
-[how_to_install_boost](https://www.boost.org/doc/libs/1_58_0/more/getting_started/unix-variants.html)
-[how_to_install_opencv](https://docs.opencv.org/3.4.0/d7/d9f/tutorial_linux_install.html)
+[how_to_install_boost](https://www.boost.org/doc/libs/1_58_0/more/getting_started/unix-variants.html) 
+and [how_to_install_opencv](https://docs.opencv.org/3.4.0/d7/d9f/tutorial_linux_install.html)
 . Then you can use qt creator to open the .pro file to configure the 
 project. A prebuiilt release version and a prebuilt debug version of the
 client has already been uploaded into the ROOT_DIR/release and 
@@ -125,6 +130,10 @@ tradition map.To make this kind of map you need know the geographic
 coordinates of every pictures.A lot of camera will record this 
 information in the image EXIF data for example Iphone.
 
+Since the image are captures on pretty high frequency then you can use
+a small roi of the origin image to generate a high resolution ipm stitch
+result image.
+
 Here are some examples of ipm stitch result
 
 `Ipm Stitch Panel Example`
@@ -133,4 +142,11 @@ Here are some examples of ipm stitch result
 
 `Ipm Stitch Result Example`
 
-![Ipm_Stitch_Example](/images/ipm_stitch_result.png)
+![Ipm_Stitch_Result_Example](/images/ipm_stitch_result.png)
+
+`Ipm Stitch Result Details Example`
+
+![Ipm_Stitch_Result_Details_Example](/images/ipm_stitch_result_details.png)
+
+From the stitch result and the detatils example image you may find the
+stitch result can show the road details pretty well.
