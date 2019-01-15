@@ -6340,61 +6340,6 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qaction.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
 		ui_mainwindow.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/QVariant \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QAction \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QApplication \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qguiapplication.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qinputmethod.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QButtonGroup \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QGridLayout \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qgridlayout.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qlayout.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qboxlayout.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QGroupBox \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qgroupbox.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QHBoxLayout \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QHeaderView \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qheaderview.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qvalidator.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qregularexpression.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qslider.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qstyle.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qtabbar.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qrubberband.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QLayout \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QLineEdit \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qlineedit.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtextcursor.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtextformat.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QProgressBar \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qprogressbar.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QPushButton \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QRadioButton \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qradiobutton.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QStatusBar \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QToolBar \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qtoolbar.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QToolBox \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qtoolbox.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QToolButton \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qtoolbutton.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/QDir \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdir.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfileinfo.h \
@@ -6430,8 +6375,10 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtemporarydir.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/QScopedPointer \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtemporaryfile.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractproxymodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsortfilterproxymodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringlistmodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonarray.h \
@@ -6439,8 +6386,10 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsondocument.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbasictimer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmath.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmetaobject.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmimedata.h \
@@ -6487,6 +6436,7 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlinkedlist.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmessageauthenticationcode.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qqueue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qregularexpression.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qscopedvaluerollback.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstack.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtextboundaryfinder.h \
