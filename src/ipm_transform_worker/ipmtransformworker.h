@@ -1,6 +1,6 @@
 /************************************************
-* Copyright 2014 Baidu Inc. All Rights Reserved.
-* Author: Luo Yao (luoyao@baidu.com)
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
 * File: ipmTransformWorker.h
 * Date: 18-12-24 下午3:43
 ************************************************/

@@ -1,13 +1,11 @@
 /************************************************
-* Copyright 2014 Baidu Inc. All Rights Reserved.
-* Author: Luo Yao (luoyao@baidu.com)
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
 * File: frametimeParser.h
 * Date: 18-11-7 下午7:44
 ************************************************/
 
 #pragma once
-
-// 轨迹文件frametime.txt文件解析
 
 #include <string>
 #include <unordered_map>

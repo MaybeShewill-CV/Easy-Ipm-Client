@@ -1,5 +1,5 @@
-// Copyright 2014 Baidu Inc. All Rights Reserved.
-// Author: Luo Yao (luoyao@baidu.com)
+// Copyright 2018 Baidu Inc. All Rights Reserved.
+// Author: Luo Yao
 // Created by Luo Yao on 18-1-15.
 
 // 文件系统处理类

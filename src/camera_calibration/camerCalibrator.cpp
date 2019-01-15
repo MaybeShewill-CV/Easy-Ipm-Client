@@ -1,6 +1,6 @@
 /************************************************
-* Copyright 2014 Baidu Inc. All Rights Reserved.
-* Author: Luo Yao (luoyao@baidu.com)
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
 * File: camerCalibrator.cpp
 * Date: 18-7-26 下午5:28
 ************************************************/

@@ -1,6 +1,6 @@
 /************************************************
-* Copyright 2014 Baidu Inc. All Rights Reserved.
-* Author: Luo Yao (luoyao@baidu.com)
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
 * File: adaptiveIpmModel.h
 * Date: 18-10-30 下午1:25
 ************************************************/

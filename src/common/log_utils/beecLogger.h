@@ -1,6 +1,6 @@
 /************************************************
-* Copyright 2014 Baidu Inc. All Rights Reserved.
-* Author: Luo Yao (luoyao@baidu.com)
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
 * File: beecLogger.h
 * Date: 18-11-16 下午1:23
 ************************************************/
