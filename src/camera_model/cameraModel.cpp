@@ -33,78 +33,6 @@ CameraModel::CameraModel() {
 /***
  * 构造函数
  */
-CameraModel::CameraModel(const std::string &camera_matrix_path) {
-
-    if (!FileSystemProcessor::is_file_exist(camera_matrix_path)) {
-        LOG(INFO) << "相机标定参数: " << camera_matrix_path << " 不存在";
-        init_camera();
-        return;
-    }
-
-    cv::FileStorage fs(camera_matrix_path, cv::FileStorage::READ);
-
-    if (!fs.isOpened()) {
-        LOG(INFO) << "相机标定参数: " << camera_matrix_path << " 无法正常打开";
-        init_camera();
-        return;
-    }
-
-    cv::Mat camera_matrix;
-    cv::Mat distortion_coefficients;
-
-    (*fs["camera_matrix"].end()) >> camera_matrix;
-    (*fs["distortion_coefficients"].end()) >> distortion_coefficients;
-
-    fs.release();
-
-//    auto image_size = cv::Size(2448, 2048); // ccd图像尺寸
-    auto image_size = cv::Size(4096, 2160); // cmos图像尺寸
-
-    // 平面相机内参初始化去畸变remap矩阵
-    cv::initUndistortRectifyMap(
-            camera_matrix,
-            distortion_coefficients,
-            cv::Mat(),
-            camera_matrix,
-            image_size, CV_32FC1,
-            _m_distortion_remap_x, _m_distortion_remap_y);
-
-    // 鱼眼相机内参初始化去畸变remap矩阵
-//    cv::fisheye::initUndistortRectifyMap(
-//            camera_matrix, distortion_coefficients, cv::Mat(),
-//            cv::getOptimalNewCameraMatrix(
-//                    camera_matrix,
-//                    distortion_coefficients,
-//                    image_size, 1, image_size, nullptr),
-//            image_size, CV_32FC1, _m_distortion_remap_x, _m_distortion_remap_y);
-
-    _m_cx = camera_matrix.at<double>(0, 2);
-    _m_cy = camera_matrix.at<double>(1, 2);
-    _m_fx = camera_matrix.at<double>(0, 0);
-    _m_fy = camera_matrix.at<double>(1, 1);
-    _m_k1 = distortion_coefficients.at<double>(0, 0);
-    _m_k2 = distortion_coefficients.at<double>(1, 0);
-    _m_k3 = distortion_coefficients.at<double>(2, 0);
-    _m_k4 = distortion_coefficients.at<double>(3, 0);
-    _m_p1 = 0.001186043659633;
-    _m_p2 = 0.0;
-
-    _m_roll_angle_base = 0;
-    _m_yaw_angle_base = 0;
-    _m_pitch_angle_base = 15.5 * DEG2RAD;
-    _m_height_base = 3500;
-
-    _m_roll_angle_dynamic = 0;
-    _m_yaw_angle_dynamic = 0;
-    _m_pitch_angle_dynamic = 0;
-    _m_height_dynamic = 0;
-
-    _m_camera_name = "CCD_Camera";
-}
-
-/***
- * 构造函数
- */
 CameraModel::CameraModel(const IpmParameterParser &ipm_para_parser) {
 
     auto camera_matrix_path = ipm_para_parser.get_calib_file_path().toStdString();
@@ -142,15 +70,6 @@ CameraModel::CameraModel(const IpmParameterParser &ipm_para_parser) {
             camera_matrix,
             image_size, CV_32FC1,
             _m_distortion_remap_x, _m_distortion_remap_y);
-
-    // 鱼眼相机内参初始化去畸变remap矩阵
-//    cv::fisheye::initUndistortRectifyMap(
-//            camera_matrix, distortion_coefficients, cv::Mat(),
-//            cv::getOptimalNewCameraMatrix(
-//                    camera_matrix,
-//                    distortion_coefficients,
-//                    image_size, 1, image_size, nullptr),
-//            image_size, CV_32FC1, _m_distortion_remap_x, _m_distortion_remap_y);
 
     _m_cx = camera_matrix.at<double>(0, 2);
     _m_cy = camera_matrix.at<double>(1, 2);

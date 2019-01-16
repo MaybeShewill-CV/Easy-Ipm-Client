@@ -21,11 +21,9 @@ public:
 
     CameraModel();
 
-    explicit CameraModel(const std::string &camera_matrix_path);
+    ~CameraModel() = default;
 
     explicit CameraModel(const IpmParameterParser &ipm_para_parser);
-
-    ~CameraModel() = default;
 
     CameraModel &operator=(const CameraModel &cam);
 
