@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: ipmParameterParser.cpp
+* Date: 18-12-26 下午2:43
+************************************************/
+
 #include "ipmparameterparser.h"
 
 IpmParameterParser::IpmParameterParser(const IpmParameterParser &ipm_para_parser) {

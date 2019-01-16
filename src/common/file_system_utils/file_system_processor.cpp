@@ -1,11 +1,15 @@
-//
-// Created by baidu on 18-1-12.
-//
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: file_system_processor.cpp
+* Date: 18-1-15 下午1:28
+************************************************/
 
 #include "file_system_processor.h"
 
-#include <boost/algorithm/string.hpp>
 #include <iostream>
+
+#include <boost/algorithm/string.hpp>
 
 namespace beec {
 namespace common {

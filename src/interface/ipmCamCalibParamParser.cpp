@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: ipmCamCalibParamParser.cpp
+* Date: 18-12-26 下午2:23
+************************************************/
+
 #include "ipmCamCalibParamParser.h"
 
 IpmCamCalibParamParser::IpmCamCalibParamParser(const IpmCamCalibParamParser &parser)

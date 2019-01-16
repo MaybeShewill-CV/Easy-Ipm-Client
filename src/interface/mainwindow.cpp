@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: mainwindow.cpp
+* Date: 18-12-24 下午2:36
+************************************************/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 

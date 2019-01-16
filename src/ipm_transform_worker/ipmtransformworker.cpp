@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: ipmtransformworker.cpp
+* Date: 18-12-25 下午4:36
+************************************************/
+
 #include "ipmtransformworker.h"
 
 #include <chrono>

@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: ipmImageViewer.cpp
+* Date: 18-12-27 下午4:23
+************************************************/
+
 #include "ipmImageViewer.h"
 
 #include <QLabel>

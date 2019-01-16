@@ -1,6 +1,9 @@
-// Copyright 2018 Baidu Inc. All Rights Reserved.
-// Author: Luo Yao
-// Created by Luo Yao on 18-1-15.
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: file_system_processor.h
+* Date: 18-1-15 下午5:28
+************************************************/
 
 // 文件系统处理类
 

@@ -1,3 +1,10 @@
+/************************************************
+* Copyright 2018 Baidu Inc. All Rights Reserved.
+* Author: Luo Yao
+* File: mainWindow.h
+* Date: 18-12-24 下午5:28
+************************************************/
+
 #pragma once
 
 #include <string>
