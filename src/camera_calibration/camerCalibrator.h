@@ -144,6 +144,8 @@ signals:
     void report_calib_result_image();
 
     void report_calib_process_error_code(int);
+
+    void report_is_calib_para_calculation_process_finished(bool);
 };
 }
 }

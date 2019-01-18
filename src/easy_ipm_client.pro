@@ -30,6 +30,7 @@ SOURCES += \
     interface/ipmCamCalibParamParser.cpp \
     interface/ipmImageViewer.cpp \
     interface/ipmParameterParser.cpp \
+    interface/qWaitDialog.cpp \
     camera_model/cameraModel.cpp \
     camera_calibration/camerCalibrator.cpp \
     common/file_system_utils/file_system_processor.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     interface/ipmparameterparser.h \
     interface/ipmCamCalibParamParser.h \
     interface/ipmImageViewer.h \
+    interface/qWaitDialog.h \
     common/file_system_utils/file_system_processor.h \
     common/log_utils/beecLogger.h \
     camera_model/cameraModel.h \

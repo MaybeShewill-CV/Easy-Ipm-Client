@@ -61,6 +61,7 @@ MainWindow::~MainWindow()
 
     delete _m_qimg;
     delete _m_ipm_image_viewer;
+    delete _m_qwait_dialog;
     delete ui;
 
     delete _m_batch_generate_ipm_process_thread;
@@ -70,6 +71,7 @@ MainWindow::~MainWindow()
     ui = nullptr;
     _m_qimg = nullptr;
     _m_ipm_image_viewer = nullptr;
+    _m_qwait_dialog = nullptr;
     _m_batch_generate_ipm_process_thread = nullptr;
     _m_single_generate_ipm_process_thread = nullptr;
     _m_ipm_cam_calib_process_thread = nullptr;
@@ -617,6 +619,8 @@ void MainWindow::ipm_cam_calib_start_btn_clicked() {
             ui->ipm_calib_start_pushButton, SLOT(setEnabled(bool)));
     connect(_m_ipm_cam_calib_worker, SIGNAL(report_calib_process_error_code(int)),
             this, SLOT(ipm_cam_calib_show_process_error_msg(int)));
+    connect(_m_ipm_cam_calib_worker, SIGNAL(report_is_calib_para_calculation_process_finished(bool)),
+            this, SLOT(ipm_cam_calib_show_wait_dialog_for_camera_intrinsics_calculation(bool)));
 
     if (_m_batch_generate_ipm_process_thread->isRunning()) {
         connect(_m_batch_generate_ipm_process_thread, SIGNAL(finished()),
@@ -879,6 +883,33 @@ void MainWindow::ipm_cam_calib_show_distoration_result_image() {
 
     _m_ipm_image_viewer->set_image(*_m_qimg);
     _m_ipm_image_viewer->fit_image();
+}
+
+void MainWindow::ipm_cam_calib_show_wait_dialog_for_camera_intrinsics_calculation(bool is_finished) {
+
+    // if not finished show wait dialog
+    if (!is_finished) {
+        _m_qwait_dialog = new QWaitDialog("Calculating intrinsics....", this);
+        _m_qwait_dialog->setParent(this);
+        _m_qwait_dialog->setFocusProxy(this);
+        _m_qwait_dialog->show();
+    } else if (!is_finished && _m_qwait_dialog != nullptr) {
+        delete _m_qwait_dialog;
+        _m_qwait_dialog = nullptr;
+        _m_qwait_dialog = new QWaitDialog("Calculating intrinsics....", this);
+        _m_qwait_dialog->setParent(this);
+        _m_qwait_dialog->setFocusProxy(this);
+        _m_qwait_dialog->show();
+    }
+
+    // if finished close wait dialog and release memory
+    if (is_finished && _m_qwait_dialog != nullptr) {
+        _m_qwait_dialog->close();
+        delete _m_qwait_dialog;
+        _m_qwait_dialog = nullptr;
+    }
+
+    return;
 }
 
 void MainWindow::image_view_show_mouse_information_on_status_bar() {

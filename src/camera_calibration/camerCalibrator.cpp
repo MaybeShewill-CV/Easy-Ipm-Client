@@ -129,15 +129,18 @@ void CamerCalibrator::calibrate_camera() {
         return;
     }
     // 标定相机内参
+    emit report_is_calib_para_calculation_process_finished(false);
     if (!calibrate_camera_params()) {
 
         LOG(INFO) << "Ipm camera calibration calibrate inner paras falied";
 
         emit report_is_calib_process_finished(true);
+        emit report_is_calib_para_calculation_process_finished(true);
         emit report_calib_process_error_code(-2);
 
         return;
     }
+    emit report_is_calib_para_calculation_process_finished(true);
     // 评估参数
     if (!evaluate_camera_params()) {
 

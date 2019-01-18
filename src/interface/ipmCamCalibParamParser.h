@@ -63,5 +63,3 @@ private:
 
     std::string _m_calib_para_save_path;
 };
-
-#endif // IPMCAMCALIBPARAMPARSER_H

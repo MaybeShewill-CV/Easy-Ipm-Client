@@ -25,6 +25,7 @@
 #include "interface/ipmparameterparser.h"
 #include "interface/ipmCamCalibParamParser.h"
 #include "interface/ipmImageViewer.h"
+#include "interface/qWaitDialog.h"
 
 class QComboBox;
 class QLineEdit;
@@ -48,6 +49,7 @@ private:
 
     QImage *_m_qimg;
     IpmImageViewer *_m_ipm_image_viewer;
+    QWaitDialog *_m_qwait_dialog;
 
     // backend ipm generator work thread
     QThread *_m_batch_generate_ipm_process_thread;
@@ -153,6 +155,8 @@ private slots:
     void ipm_cam_calib_distorate_image_btn_clicked(); // distorate image using calib result file
 
     void ipm_cam_calib_show_distoration_result_image(); // show image distoration result
+
+    void ipm_cam_calib_show_wait_dialog_for_camera_intrinsics_calculation(bool); // shwo wait dialog while calculating camera intrinsics
 
     // Image view process
     void image_view_show_mouse_information_on_status_bar(); // show the coordinates of the mouse on the scene and the rgb info of the mouse location

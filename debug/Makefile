@@ -53,12 +53,14 @@ SOURCES       = ../src/interface/main.cpp \
 		../src/interface/ipmCamCalibParamParser.cpp \
 		../src/interface/ipmImageViewer.cpp \
 		../src/interface/ipmParameterParser.cpp \
+		../src/interface/qWaitDialog.cpp \
 		../src/camera_model/cameraModel.cpp \
 		../src/camera_calibration/camerCalibrator.cpp \
 		../src/common/file_system_utils/file_system_processor.cpp \
 		../src/common/log_utils/beecLogger.cpp \
 		../src/ipm_transform_worker/ipmtransformworker.cpp moc_mainwindow.cpp \
 		moc_ipmImageViewer.cpp \
+		moc_qWaitDialog.cpp \
 		moc_ipmtransformworker.cpp \
 		moc_camerCalibrator.cpp
 OBJECTS       = main.o \
@@ -66,6 +68,7 @@ OBJECTS       = main.o \
 		ipmCamCalibParamParser.o \
 		ipmImageViewer.o \
 		ipmParameterParser.o \
+		qWaitDialog.o \
 		cameraModel.o \
 		camerCalibrator.o \
 		file_system_processor.o \
@@ -73,6 +76,7 @@ OBJECTS       = main.o \
 		ipmtransformworker.o \
 		moc_mainwindow.o \
 		moc_ipmImageViewer.o \
+		moc_qWaitDialog.o \
 		moc_ipmtransformworker.o \
 		moc_camerCalibrator.o
 DIST          = /home/baidu/Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -215,6 +219,7 @@ DIST          = /home/baidu/Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../src/interface/ipmparameterparser.h \
 		../src/interface/ipmCamCalibParamParser.h \
 		../src/interface/ipmImageViewer.h \
+		../src/interface/qWaitDialog.h \
 		../src/common/file_system_utils/file_system_processor.h \
 		../src/common/log_utils/beecLogger.h \
 		../src/camera_model/cameraModel.h \
@@ -225,6 +230,7 @@ DIST          = /home/baidu/Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../src/interface/ipmCamCalibParamParser.cpp \
 		../src/interface/ipmImageViewer.cpp \
 		../src/interface/ipmParameterParser.cpp \
+		../src/interface/qWaitDialog.cpp \
 		../src/camera_model/cameraModel.cpp \
 		../src/camera_calibration/camerCalibrator.cpp \
 		../src/common/file_system_utils/file_system_processor.cpp \
@@ -536,8 +542,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/interface/mainwindow.h ../src/interface/ipmparameterparser.h ../src/interface/ipmCamCalibParamParser.h ../src/interface/ipmImageViewer.h ../src/common/file_system_utils/file_system_processor.h ../src/common/log_utils/beecLogger.h ../src/camera_model/cameraModel.h ../src/ipm_model/adaptiveIpmModel.h ../src/ipm_transform_worker/ipmtransformworker.h ../src/camera_calibration/camerCalibrator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/interface/main.cpp ../src/interface/mainwindow.cpp ../src/interface/ipmCamCalibParamParser.cpp ../src/interface/ipmImageViewer.cpp ../src/interface/ipmParameterParser.cpp ../src/camera_model/cameraModel.cpp ../src/camera_calibration/camerCalibrator.cpp ../src/common/file_system_utils/file_system_processor.cpp ../src/common/log_utils/beecLogger.cpp ../src/ipm_transform_worker/ipmtransformworker.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/interface/mainwindow.h ../src/interface/ipmparameterparser.h ../src/interface/ipmCamCalibParamParser.h ../src/interface/ipmImageViewer.h ../src/interface/qWaitDialog.h ../src/common/file_system_utils/file_system_processor.h ../src/common/log_utils/beecLogger.h ../src/camera_model/cameraModel.h ../src/ipm_model/adaptiveIpmModel.h ../src/ipm_transform_worker/ipmtransformworker.h ../src/camera_calibration/camerCalibrator.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/interface/main.cpp ../src/interface/mainwindow.cpp ../src/interface/ipmCamCalibParamParser.cpp ../src/interface/ipmImageViewer.cpp ../src/interface/ipmParameterParser.cpp ../src/interface/qWaitDialog.cpp ../src/camera_model/cameraModel.cpp ../src/camera_calibration/camerCalibrator.cpp ../src/common/file_system_utils/file_system_processor.cpp ../src/common/log_utils/beecLogger.cpp ../src/ipm_transform_worker/ipmtransformworker.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../src/interface/mainwindow.ui $(DISTDIR)/
 
 
@@ -563,9 +569,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_ipmImageViewer.cpp moc_ipmtransformworker.cpp moc_camerCalibrator.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_ipmImageViewer.cpp moc_qWaitDialog.cpp moc_ipmtransformworker.cpp moc_camerCalibrator.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_ipmImageViewer.cpp moc_ipmtransformworker.cpp moc_camerCalibrator.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_ipmImageViewer.cpp moc_qWaitDialog.cpp moc_ipmtransformworker.cpp moc_camerCalibrator.cpp
 moc_mainwindow.cpp: /home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
@@ -1911,6 +1917,21 @@ moc_mainwindow.cpp: /home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qmenu.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qaction.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		../src/interface/qWaitDialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMovie \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmovie.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimagereader.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFrame \
 		../src/interface/mainwindow.h
 	/home/baidu/Qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/baidu/Qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/usr/local/include/opencv -I/usr/local/include -I/home/baidu/Qt/5.6/gcc_64/include -I/home/baidu/Qt/5.6/gcc_64/include/QtWidgets -I/home/baidu/Qt/5.6/gcc_64/include/QtGui -I/home/baidu/Qt/5.6/gcc_64/include/QtCore -I. ../src/interface/mainwindow.h -o moc_mainwindow.cpp
 
@@ -2038,6 +2059,130 @@ moc_ipmImageViewer.cpp: /home/baidu/Qt/5.6/gcc_64/include/QtCore/QObject \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
 		../src/interface/ipmImageViewer.h
 	/home/baidu/Qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/baidu/Qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/usr/local/include/opencv -I/usr/local/include -I/home/baidu/Qt/5.6/gcc_64/include -I/home/baidu/Qt/5.6/gcc_64/include/QtWidgets -I/home/baidu/Qt/5.6/gcc_64/include/QtGui -I/home/baidu/Qt/5.6/gcc_64/include/QtCore -I. ../src/interface/ipmImageViewer.h -o moc_ipmImageViewer.cpp
+
+moc_qWaitDialog.cpp: /home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qglobal.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qconfig.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfeatures.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qisenum.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlogging.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qflags.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmutex.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qnumeric.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qnamespace.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstring.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qchar.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbytearray.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qrefcount.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qarraydata.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qiterator.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpair.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringlist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qregexp.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreevent.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmetatype.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpoint.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvector.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qiodevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qline.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qshareddata.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qhash.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvariant.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdebug.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtextstream.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlocale.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qset.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QLabel \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qlabel.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qframe.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMovie \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmovie.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimagereader.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFrame \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMouseEvent \
+		../src/interface/qWaitDialog.h
+	/home/baidu/Qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/baidu/Qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/home/baidu/Silly_Project/ICode/baidu/beec/easy-ipm-client/src -I/usr/local/include/opencv -I/usr/local/include -I/home/baidu/Qt/5.6/gcc_64/include -I/home/baidu/Qt/5.6/gcc_64/include/QtWidgets -I/home/baidu/Qt/5.6/gcc_64/include/QtGui -I/home/baidu/Qt/5.6/gcc_64/include/QtCore -I. ../src/interface/qWaitDialog.h -o moc_qWaitDialog.cpp
 
 moc_ipmtransformworker.cpp: /home/baidu/Qt/5.6/gcc_64/include/QtCore/QObject \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject.h \
@@ -4971,10 +5116,23 @@ main.o: ../src/interface/main.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qmenu.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qaction.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QApplication \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		../src/interface/qWaitDialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMovie \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmovie.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimagereader.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFrame \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qguiapplication.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qinputmethod.h \
@@ -6330,6 +6488,21 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qmenu.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qaction.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		../src/interface/qWaitDialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMovie \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmovie.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimagereader.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFrame \
 		ui_mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/QDir \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdir.h \
@@ -6373,19 +6546,14 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsortfilterproxymodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringlistmodel.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonarray.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsondocument.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbasictimer.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmath.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmetaobject.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmimedata.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsharedmemory.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsignalmapper.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsocketnotifier.h \
@@ -6395,9 +6563,7 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qwineventnotifier.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmimedatabase.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmimetype.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlibrary.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpluginloader.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/quuid.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qabstractstate.h \
@@ -6454,7 +6620,6 @@ mainwindow.o: ../src/interface/mainwindow.cpp ../src/interface/mainwindow.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtConcurrent/qtconcurrentversion.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFileDialog \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qfiledialog.h \
-		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QMessageBox \
 		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qmessagebox.h \
 		/usr/local/include/boost/lexical_cast.hpp \
@@ -7075,6 +7240,668 @@ ipmParameterParser.o: ../src/interface/ipmParameterParser.cpp ../src/interface/i
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
 		/home/baidu/Qt/5.6/gcc_64/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ipmParameterParser.o ../src/interface/ipmParameterParser.cpp
+
+qWaitDialog.o: ../src/interface/qWaitDialog.cpp ../src/interface/qWaitDialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QDialog \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qwidget.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qglobal.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qconfig.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfeatures.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qisenum.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlogging.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qflags.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmutex.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qnumeric.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qnamespace.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstring.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qchar.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbytearray.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qrefcount.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qarraydata.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qiterator.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpair.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringlist.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qregexp.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreevent.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmetatype.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmargins.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qrect.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsize.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpoint.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpalette.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qcolor.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qrgb.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qbrush.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvector.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qregion.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qiodevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qline.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtransform.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimage.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qshareddata.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qhash.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfont.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qcursor.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qkeysequence.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qevent.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qvariant.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qmap.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qdebug.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qtextstream.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qlocale.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qset.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qurl.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qurlquery.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfile.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfiledevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qvector2d.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QLabel \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qlabel.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qframe.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMovie \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qmovie.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimagereader.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qimageiohandler.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qplugin.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qpointer.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonobject.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtCore/qfactoryinterface.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QFrame \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/QMouseEvent \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/QApplication \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		/home/baidu/Qt/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../src/common/log_utils/beecLogger.h \
+		../src/common/file_system_utils/file_system_processor.h \
+		/usr/local/include/boost/filesystem.hpp \
+		/usr/local/include/boost/filesystem/config.hpp \
+		/usr/local/include/boost/config.hpp \
+		/usr/local/include/boost/config/user.hpp \
+		/usr/local/include/boost/config/select_compiler_config.hpp \
+		/usr/local/include/boost/config/compiler/nvcc.hpp \
+		/usr/local/include/boost/config/compiler/gcc_xml.hpp \
+		/usr/local/include/boost/config/compiler/cray.hpp \
+		/usr/local/include/boost/config/compiler/common_edg.hpp \
+		/usr/local/include/boost/config/compiler/comeau.hpp \
+		/usr/local/include/boost/config/compiler/pathscale.hpp \
+		/usr/local/include/boost/config/compiler/intel.hpp \
+		/usr/local/include/boost/config/compiler/clang.hpp \
+		/usr/local/include/boost/config/compiler/digitalmars.hpp \
+		/usr/local/include/boost/config/compiler/gcc.hpp \
+		/usr/local/include/boost/config/compiler/kai.hpp \
+		/usr/local/include/boost/config/compiler/sgi_mipspro.hpp \
+		/usr/local/include/boost/config/compiler/compaq_cxx.hpp \
+		/usr/local/include/boost/config/compiler/greenhills.hpp \
+		/usr/local/include/boost/config/compiler/codegear.hpp \
+		/usr/local/include/boost/config/compiler/borland.hpp \
+		/usr/local/include/boost/config/compiler/metrowerks.hpp \
+		/usr/local/include/boost/config/compiler/sunpro_cc.hpp \
+		/usr/local/include/boost/config/compiler/hp_acc.hpp \
+		/usr/local/include/boost/config/compiler/mpw.hpp \
+		/usr/local/include/boost/config/compiler/vacpp.hpp \
+		/usr/local/include/boost/config/compiler/pgi.hpp \
+		/usr/local/include/boost/config/compiler/visualc.hpp \
+		/usr/local/include/boost/config/select_stdlib_config.hpp \
+		/usr/local/include/boost/config/stdlib/stlport.hpp \
+		/usr/local/include/boost/config/stdlib/libcomo.hpp \
+		/usr/local/include/boost/config/no_tr1/utility.hpp \
+		/usr/local/include/boost/config/stdlib/roguewave.hpp \
+		/usr/local/include/boost/config/stdlib/libcpp.hpp \
+		/usr/local/include/boost/config/stdlib/libstdcpp3.hpp \
+		/usr/local/include/boost/config/stdlib/sgi.hpp \
+		/usr/local/include/boost/config/stdlib/msl.hpp \
+		/usr/local/include/boost/config/posix_features.hpp \
+		/usr/local/include/boost/config/stdlib/vacpp.hpp \
+		/usr/local/include/boost/config/stdlib/modena.hpp \
+		/usr/local/include/boost/config/stdlib/dinkumware.hpp \
+		/usr/local/include/boost/config/select_platform_config.hpp \
+		/usr/local/include/boost/config/platform/linux.hpp \
+		/usr/local/include/boost/config/platform/bsd.hpp \
+		/usr/local/include/boost/config/platform/solaris.hpp \
+		/usr/local/include/boost/config/platform/irix.hpp \
+		/usr/local/include/boost/config/platform/hpux.hpp \
+		/usr/local/include/boost/config/platform/cygwin.hpp \
+		/usr/local/include/boost/config/platform/win32.hpp \
+		/usr/local/include/boost/config/platform/beos.hpp \
+		/usr/local/include/boost/config/platform/macos.hpp \
+		/usr/local/include/boost/config/platform/aix.hpp \
+		/usr/local/include/boost/config/platform/amigaos.hpp \
+		/usr/local/include/boost/config/platform/qnxnto.hpp \
+		/usr/local/include/boost/config/platform/vxworks.hpp \
+		/usr/local/include/boost/config/platform/symbian.hpp \
+		/usr/local/include/boost/config/platform/cray.hpp \
+		/usr/local/include/boost/config/platform/vms.hpp \
+		/usr/local/include/boost/config/suffix.hpp \
+		/usr/local/include/boost/system/api_config.hpp \
+		/usr/local/include/boost/detail/workaround.hpp \
+		/usr/local/include/boost/config/auto_link.hpp \
+		/usr/local/include/boost/version.hpp \
+		/usr/local/include/boost/filesystem/path.hpp \
+		/usr/local/include/boost/filesystem/path_traits.hpp \
+		/usr/local/include/boost/utility/enable_if.hpp \
+		/usr/local/include/boost/core/enable_if.hpp \
+		/usr/local/include/boost/type_traits/is_array.hpp \
+		/usr/local/include/boost/type_traits/config.hpp \
+		/usr/local/include/boost/type_traits/detail/bool_trait_def.hpp \
+		/usr/local/include/boost/type_traits/detail/template_arity_spec.hpp \
+		/usr/local/include/boost/mpl/int.hpp \
+		/usr/local/include/boost/mpl/int_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/adl_barrier.hpp \
+		/usr/local/include/boost/mpl/aux_/config/adl.hpp \
+		/usr/local/include/boost/mpl/aux_/config/msvc.hpp \
+		/usr/local/include/boost/mpl/aux_/config/intel.hpp \
+		/usr/local/include/boost/mpl/aux_/config/gcc.hpp \
+		/usr/local/include/boost/mpl/aux_/config/workaround.hpp \
+		/usr/local/include/boost/mpl/aux_/nttp_decl.hpp \
+		/usr/local/include/boost/mpl/aux_/config/nttp.hpp \
+		/usr/local/include/boost/preprocessor/cat.hpp \
+		/usr/local/include/boost/preprocessor/config/config.hpp \
+		/usr/local/include/boost/mpl/aux_/integral_wrapper.hpp \
+		/usr/local/include/boost/mpl/integral_c_tag.hpp \
+		/usr/local/include/boost/mpl/aux_/config/static_constant.hpp \
+		/usr/local/include/boost/mpl/aux_/static_cast.hpp \
+		/usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/params.hpp \
+		/usr/local/include/boost/mpl/aux_/config/preprocessor.hpp \
+		/usr/local/include/boost/preprocessor/comma_if.hpp \
+		/usr/local/include/boost/preprocessor/punctuation/comma_if.hpp \
+		/usr/local/include/boost/preprocessor/control/if.hpp \
+		/usr/local/include/boost/preprocessor/control/iif.hpp \
+		/usr/local/include/boost/preprocessor/logical/bool.hpp \
+		/usr/local/include/boost/preprocessor/facilities/empty.hpp \
+		/usr/local/include/boost/preprocessor/punctuation/comma.hpp \
+		/usr/local/include/boost/preprocessor/repeat.hpp \
+		/usr/local/include/boost/preprocessor/repetition/repeat.hpp \
+		/usr/local/include/boost/preprocessor/debug/error.hpp \
+		/usr/local/include/boost/preprocessor/detail/auto_rec.hpp \
+		/usr/local/include/boost/preprocessor/detail/dmc/auto_rec.hpp \
+		/usr/local/include/boost/preprocessor/tuple/eat.hpp \
+		/usr/local/include/boost/preprocessor/inc.hpp \
+		/usr/local/include/boost/preprocessor/arithmetic/inc.hpp \
+		/usr/local/include/boost/mpl/aux_/config/lambda.hpp \
+		/usr/local/include/boost/mpl/aux_/config/ttp.hpp \
+		/usr/local/include/boost/mpl/aux_/config/ctps.hpp \
+		/usr/local/include/boost/mpl/aux_/config/overload_resolution.hpp \
+		/usr/local/include/boost/type_traits/integral_constant.hpp \
+		/usr/local/include/boost/mpl/bool.hpp \
+		/usr/local/include/boost/mpl/bool_fwd.hpp \
+		/usr/local/include/boost/mpl/integral_c.hpp \
+		/usr/local/include/boost/mpl/integral_c_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/lambda_support.hpp \
+		/usr/local/include/boost/mpl/aux_/yes_no.hpp \
+		/usr/local/include/boost/mpl/aux_/config/arrays.hpp \
+		/usr/local/include/boost/mpl/aux_/na_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/enum.hpp \
+		/usr/local/include/boost/preprocessor/tuple/to_list.hpp \
+		/usr/local/include/boost/preprocessor/facilities/overload.hpp \
+		/usr/local/include/boost/preprocessor/variadic/size.hpp \
+		/usr/local/include/boost/preprocessor/tuple/size.hpp \
+		/usr/local/include/boost/preprocessor/list/for_each_i.hpp \
+		/usr/local/include/boost/preprocessor/list/adt.hpp \
+		/usr/local/include/boost/preprocessor/detail/is_binary.hpp \
+		/usr/local/include/boost/preprocessor/detail/check.hpp \
+		/usr/local/include/boost/preprocessor/logical/compl.hpp \
+		/usr/local/include/boost/preprocessor/repetition/for.hpp \
+		/usr/local/include/boost/preprocessor/repetition/detail/edg/for.hpp \
+		/usr/local/include/boost/preprocessor/repetition/detail/msvc/for.hpp \
+		/usr/local/include/boost/preprocessor/repetition/detail/dmc/for.hpp \
+		/usr/local/include/boost/preprocessor/control/expr_iif.hpp \
+		/usr/local/include/boost/preprocessor/repetition/detail/for.hpp \
+		/usr/local/include/boost/preprocessor/tuple/elem.hpp \
+		/usr/local/include/boost/preprocessor/facilities/expand.hpp \
+		/usr/local/include/boost/preprocessor/tuple/rem.hpp \
+		/usr/local/include/boost/preprocessor/tuple/detail/is_single_return.hpp \
+		/usr/local/include/boost/preprocessor/facilities/is_1.hpp \
+		/usr/local/include/boost/preprocessor/facilities/is_empty.hpp \
+		/usr/local/include/boost/preprocessor/facilities/is_empty_variadic.hpp \
+		/usr/local/include/boost/preprocessor/punctuation/is_begin_parens.hpp \
+		/usr/local/include/boost/preprocessor/punctuation/detail/is_begin_parens.hpp \
+		/usr/local/include/boost/preprocessor/facilities/detail/is_empty.hpp \
+		/usr/local/include/boost/preprocessor/facilities/identity.hpp \
+		/usr/local/include/boost/preprocessor/detail/split.hpp \
+		/usr/local/include/boost/preprocessor/variadic/elem.hpp \
+		/usr/local/include/boost/type_traits/detail/bool_trait_undef.hpp \
+		/usr/local/include/boost/type_traits/decay.hpp \
+		/usr/local/include/boost/type_traits/is_function.hpp \
+		/usr/local/include/boost/type_traits/is_reference.hpp \
+		/usr/local/include/boost/type_traits/is_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/is_rvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/ice.hpp \
+		/usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
+		/usr/local/include/boost/type_traits/detail/ice_or.hpp \
+		/usr/local/include/boost/type_traits/detail/ice_and.hpp \
+		/usr/local/include/boost/type_traits/detail/ice_not.hpp \
+		/usr/local/include/boost/type_traits/detail/ice_eq.hpp \
+		/usr/local/include/boost/type_traits/detail/false_result.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_helper.hpp \
+		/usr/local/include/boost/preprocessor/iterate.hpp \
+		/usr/local/include/boost/preprocessor/iteration/iterate.hpp \
+		/usr/local/include/boost/preprocessor/arithmetic/dec.hpp \
+		/usr/local/include/boost/preprocessor/array/elem.hpp \
+		/usr/local/include/boost/preprocessor/array/data.hpp \
+		/usr/local/include/boost/preprocessor/array/size.hpp \
+		/usr/local/include/boost/preprocessor/slot/slot.hpp \
+		/usr/local/include/boost/preprocessor/slot/detail/def.hpp \
+		/usr/local/include/boost/preprocessor/enum_params.hpp \
+		/usr/local/include/boost/preprocessor/repetition/enum_params.hpp \
+		/usr/local/include/boost/type_traits/detail/is_function_ptr_tester.hpp \
+		/usr/local/include/boost/type_traits/remove_bounds.hpp \
+		/usr/local/include/boost/type_traits/detail/type_trait_def.hpp \
+		/usr/local/include/boost/type_traits/detail/type_trait_undef.hpp \
+		/usr/local/include/boost/type_traits/add_pointer.hpp \
+		/usr/local/include/boost/type_traits/remove_reference.hpp \
+		/usr/local/include/boost/mpl/eval_if.hpp \
+		/usr/local/include/boost/mpl/if.hpp \
+		/usr/local/include/boost/mpl/aux_/value_wknd.hpp \
+		/usr/local/include/boost/mpl/aux_/config/integral.hpp \
+		/usr/local/include/boost/mpl/aux_/config/eti.hpp \
+		/usr/local/include/boost/mpl/aux_/na_spec.hpp \
+		/usr/local/include/boost/mpl/lambda_fwd.hpp \
+		/usr/local/include/boost/mpl/void_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/na.hpp \
+		/usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp \
+		/usr/local/include/boost/mpl/aux_/arity.hpp \
+		/usr/local/include/boost/mpl/aux_/config/dtp.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp \
+		/usr/local/include/boost/mpl/limits/arity.hpp \
+		/usr/local/include/boost/preprocessor/logical/and.hpp \
+		/usr/local/include/boost/preprocessor/logical/bitand.hpp \
+		/usr/local/include/boost/preprocessor/identity.hpp \
+		/usr/local/include/boost/preprocessor/empty.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/filter_params.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/sub.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/tuple.hpp \
+		/usr/local/include/boost/preprocessor/arithmetic/sub.hpp \
+		/usr/local/include/boost/preprocessor/control/while.hpp \
+		/usr/local/include/boost/preprocessor/list/fold_left.hpp \
+		/usr/local/include/boost/preprocessor/list/detail/edg/fold_left.hpp \
+		/usr/local/include/boost/preprocessor/list/detail/dmc/fold_left.hpp \
+		/usr/local/include/boost/preprocessor/list/detail/fold_left.hpp \
+		/usr/local/include/boost/preprocessor/list/fold_right.hpp \
+		/usr/local/include/boost/preprocessor/list/detail/edg/fold_right.hpp \
+		/usr/local/include/boost/preprocessor/list/detail/fold_right.hpp \
+		/usr/local/include/boost/preprocessor/list/reverse.hpp \
+		/usr/local/include/boost/preprocessor/control/detail/edg/while.hpp \
+		/usr/local/include/boost/preprocessor/control/detail/msvc/while.hpp \
+		/usr/local/include/boost/preprocessor/control/detail/dmc/while.hpp \
+		/usr/local/include/boost/preprocessor/control/detail/while.hpp \
+		/usr/local/include/boost/preprocessor/arithmetic/add.hpp \
+		/usr/local/include/boost/mpl/identity.hpp \
+		/usr/local/include/boost/system/error_code.hpp \
+		/usr/local/include/boost/system/config.hpp \
+		/usr/local/include/boost/predef/platform.h \
+		/usr/local/include/boost/predef/platform/mingw.h \
+		/usr/local/include/boost/predef/version_number.h \
+		/usr/local/include/boost/predef/make.h \
+		/usr/local/include/boost/predef/detail/test.h \
+		/usr/local/include/boost/predef/detail/platform_detected.h \
+		/usr/local/include/boost/predef/platform/windows_desktop.h \
+		/usr/local/include/boost/predef/os/windows.h \
+		/usr/local/include/boost/predef/detail/os_detected.h \
+		/usr/local/include/boost/predef/platform/windows_store.h \
+		/usr/local/include/boost/predef/platform/windows_phone.h \
+		/usr/local/include/boost/predef/platform/windows_runtime.h \
+		/usr/local/include/boost/cstdint.hpp \
+		/usr/local/include/boost/limits.hpp \
+		/usr/local/include/boost/assert.hpp \
+		/usr/local/include/boost/current_function.hpp \
+		/usr/local/include/boost/noncopyable.hpp \
+		/usr/local/include/boost/core/noncopyable.hpp \
+		/usr/local/include/boost/cerrno.hpp \
+		/usr/local/include/boost/config/abi_prefix.hpp \
+		/usr/local/include/boost/config/abi_suffix.hpp \
+		/usr/local/include/boost/system/detail/error_code.ipp \
+		/usr/local/include/boost/config/warning_disable.hpp \
+		/usr/local/include/boost/system/detail/local_free_on_destruction.hpp \
+		/usr/local/include/boost/system/system_error.hpp \
+		/usr/local/include/boost/iterator/iterator_facade.hpp \
+		/usr/local/include/boost/iterator.hpp \
+		/usr/local/include/boost/iterator/interoperable.hpp \
+		/usr/local/include/boost/mpl/or.hpp \
+		/usr/local/include/boost/mpl/aux_/config/use_preprocessed.hpp \
+		/usr/local/include/boost/mpl/aux_/nested_type_wknd.hpp \
+		/usr/local/include/boost/mpl/aux_/include_preprocessed.hpp \
+		/usr/local/include/boost/mpl/aux_/config/compiler.hpp \
+		/usr/local/include/boost/preprocessor/stringize.hpp \
+		/usr/local/include/boost/mpl/aux_/logical_op.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/ext_params.hpp \
+		/usr/local/include/boost/preprocessor/dec.hpp \
+		/usr/local/include/boost/type_traits/is_convertible.hpp \
+		/usr/local/include/boost/type_traits/intrinsics.hpp \
+		/usr/local/include/boost/type_traits/is_same.hpp \
+		/usr/local/include/boost/type_traits/is_volatile.hpp \
+		/usr/local/include/boost/type_traits/detail/cv_traits_impl.hpp \
+		/usr/local/include/boost/type_traits/is_void.hpp \
+		/usr/local/include/boost/type_traits/is_arithmetic.hpp \
+		/usr/local/include/boost/type_traits/is_integral.hpp \
+		/usr/local/include/boost/type_traits/is_float.hpp \
+		/usr/local/include/boost/type_traits/is_abstract.hpp \
+		/usr/local/include/boost/static_assert.hpp \
+		/usr/local/include/boost/type_traits/is_class.hpp \
+		/usr/local/include/boost/type_traits/is_union.hpp \
+		/usr/local/include/boost/type_traits/remove_cv.hpp \
+		/usr/local/include/boost/type_traits/is_scalar.hpp \
+		/usr/local/include/boost/type_traits/is_enum.hpp \
+		/usr/local/include/boost/type_traits/add_reference.hpp \
+		/usr/local/include/boost/type_traits/is_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_pointer.hpp \
+		/usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
+		/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp \
+		/usr/local/include/boost/type_traits/is_polymorphic.hpp \
+		/usr/local/include/boost/type_traits/add_lvalue_reference.hpp \
+		/usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
+		/usr/local/include/boost/utility/declval.hpp \
+		/usr/local/include/boost/iterator/detail/config_def.hpp \
+		/usr/local/include/boost/iterator/detail/config_undef.hpp \
+		/usr/local/include/boost/iterator/iterator_traits.hpp \
+		/usr/local/include/boost/detail/iterator.hpp \
+		/usr/local/include/boost/iterator/iterator_categories.hpp \
+		/usr/local/include/boost/mpl/placeholders.hpp \
+		/usr/local/include/boost/mpl/arg.hpp \
+		/usr/local/include/boost/mpl/arg_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/na_assert.hpp \
+		/usr/local/include/boost/mpl/assert.hpp \
+		/usr/local/include/boost/mpl/not.hpp \
+		/usr/local/include/boost/mpl/aux_/config/gpu.hpp \
+		/usr/local/include/boost/mpl/aux_/config/pp_counter.hpp \
+		/usr/local/include/boost/mpl/aux_/arity_spec.hpp \
+		/usr/local/include/boost/mpl/aux_/arg_typedef.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/default_params.hpp \
+		/usr/local/include/boost/iterator/detail/facade_iterator_category.hpp \
+		/usr/local/include/boost/mpl/and.hpp \
+		/usr/local/include/boost/type_traits/is_const.hpp \
+		/usr/local/include/boost/detail/indirect_traits.hpp \
+		/usr/local/include/boost/type_traits/remove_pointer.hpp \
+		/usr/local/include/boost/iterator/detail/enable_if.hpp \
+		/usr/local/include/boost/utility/addressof.hpp \
+		/usr/local/include/boost/core/addressof.hpp \
+		/usr/local/include/boost/type_traits/add_const.hpp \
+		/usr/local/include/boost/type_traits/remove_const.hpp \
+		/usr/local/include/boost/type_traits/is_pod.hpp \
+		/usr/local/include/boost/mpl/always.hpp \
+		/usr/local/include/boost/mpl/apply.hpp \
+		/usr/local/include/boost/mpl/apply_fwd.hpp \
+		/usr/local/include/boost/mpl/apply_wrap.hpp \
+		/usr/local/include/boost/mpl/aux_/has_apply.hpp \
+		/usr/local/include/boost/mpl/has_xxx.hpp \
+		/usr/local/include/boost/mpl/aux_/type_wrapper.hpp \
+		/usr/local/include/boost/mpl/aux_/config/has_xxx.hpp \
+		/usr/local/include/boost/mpl/aux_/config/msvc_typename.hpp \
+		/usr/local/include/boost/preprocessor/repetition/enum_trailing_params.hpp \
+		/usr/local/include/boost/mpl/aux_/config/has_apply.hpp \
+		/usr/local/include/boost/mpl/aux_/msvc_never_true.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/add.hpp \
+		/usr/local/include/boost/mpl/aux_/config/bcc.hpp \
+		/usr/local/include/boost/mpl/aux_/msvc_dtw.hpp \
+		/usr/local/include/boost/mpl/lambda.hpp \
+		/usr/local/include/boost/mpl/bind.hpp \
+		/usr/local/include/boost/mpl/bind_fwd.hpp \
+		/usr/local/include/boost/mpl/aux_/config/bind.hpp \
+		/usr/local/include/boost/mpl/aux_/config/dmc_ambiguous_ctps.hpp \
+		/usr/local/include/boost/mpl/next.hpp \
+		/usr/local/include/boost/mpl/next_prior.hpp \
+		/usr/local/include/boost/mpl/aux_/common_name_wknd.hpp \
+		/usr/local/include/boost/mpl/protect.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/partial_spec_params.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/repeat.hpp \
+		/usr/local/include/boost/mpl/aux_/count_args.hpp \
+		/usr/local/include/boost/preprocessor/expr_if.hpp \
+		/usr/local/include/boost/preprocessor/control/expr_if.hpp \
+		/usr/local/include/boost/preprocessor/enum_shifted_params.hpp \
+		/usr/local/include/boost/preprocessor/repetition/enum_shifted_params.hpp \
+		/usr/local/include/boost/mpl/aux_/full_lambda.hpp \
+		/usr/local/include/boost/mpl/quote.hpp \
+		/usr/local/include/boost/mpl/void.hpp \
+		/usr/local/include/boost/mpl/aux_/has_type.hpp \
+		/usr/local/include/boost/mpl/aux_/template_arity.hpp \
+		/usr/local/include/boost/mpl/aux_/has_rebind.hpp \
+		/usr/local/include/boost/mpl/aux_/msvc_is_class.hpp \
+		/usr/local/include/boost/mpl/aux_/preprocessor/range.hpp \
+		/usr/local/include/boost/preprocessor/seq/subseq.hpp \
+		/usr/local/include/boost/preprocessor/seq/first_n.hpp \
+		/usr/local/include/boost/preprocessor/seq/detail/split.hpp \
+		/usr/local/include/boost/preprocessor/seq/rest_n.hpp \
+		/usr/local/include/boost/preprocessor/seq/fold_left.hpp \
+		/usr/local/include/boost/preprocessor/seq/seq.hpp \
+		/usr/local/include/boost/preprocessor/seq/elem.hpp \
+		/usr/local/include/boost/preprocessor/seq/size.hpp \
+		/usr/local/include/boost/mpl/aux_/lambda_no_ctps.hpp \
+		/usr/local/include/boost/mpl/is_placeholder.hpp \
+		/usr/local/include/boost/shared_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/shared_ptr.hpp \
+		/usr/local/include/boost/config/no_tr1/memory.hpp \
+		/usr/local/include/boost/checked_delete.hpp \
+		/usr/local/include/boost/core/checked_delete.hpp \
+		/usr/local/include/boost/throw_exception.hpp \
+		/usr/local/include/boost/exception/exception.hpp \
+		/usr/local/include/boost/smart_ptr/detail/shared_count.hpp \
+		/usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_nt.hpp \
+		/usr/local/include/boost/detail/sp_typeinfo.hpp \
+		/usr/local/include/boost/core/typeinfo.hpp \
+		/usr/local/include/boost/core/demangle.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_spin.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
+		/usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
+		/usr/local/include/boost/predef.h \
+		/usr/local/include/boost/predef/language.h \
+		/usr/local/include/boost/predef/language/stdc.h \
+		/usr/local/include/boost/predef/language/stdcpp.h \
+		/usr/local/include/boost/predef/language/objc.h \
+		/usr/local/include/boost/predef/architecture.h \
+		/usr/local/include/boost/predef/architecture/alpha.h \
+		/usr/local/include/boost/predef/architecture/arm.h \
+		/usr/local/include/boost/predef/architecture/blackfin.h \
+		/usr/local/include/boost/predef/architecture/convex.h \
+		/usr/local/include/boost/predef/architecture/ia64.h \
+		/usr/local/include/boost/predef/architecture/m68k.h \
+		/usr/local/include/boost/predef/architecture/mips.h \
+		/usr/local/include/boost/predef/architecture/parisc.h \
+		/usr/local/include/boost/predef/architecture/ppc.h \
+		/usr/local/include/boost/predef/architecture/pyramid.h \
+		/usr/local/include/boost/predef/architecture/rs6k.h \
+		/usr/local/include/boost/predef/architecture/sparc.h \
+		/usr/local/include/boost/predef/architecture/superh.h \
+		/usr/local/include/boost/predef/architecture/sys370.h \
+		/usr/local/include/boost/predef/architecture/sys390.h \
+		/usr/local/include/boost/predef/architecture/x86.h \
+		/usr/local/include/boost/predef/architecture/x86/32.h \
+		/usr/local/include/boost/predef/architecture/x86/64.h \
+		/usr/local/include/boost/predef/architecture/z.h \
+		/usr/local/include/boost/predef/compiler.h \
+		/usr/local/include/boost/predef/compiler/borland.h \
+		/usr/local/include/boost/predef/detail/comp_detected.h \
+		/usr/local/include/boost/predef/compiler/clang.h \
+		/usr/local/include/boost/predef/compiler/comeau.h \
+		/usr/local/include/boost/predef/compiler/compaq.h \
+		/usr/local/include/boost/predef/compiler/diab.h \
+		/usr/local/include/boost/predef/compiler/digitalmars.h \
+		/usr/local/include/boost/predef/compiler/dignus.h \
+		/usr/local/include/boost/predef/compiler/edg.h \
+		/usr/local/include/boost/predef/compiler/ekopath.h \
+		/usr/local/include/boost/predef/compiler/gcc_xml.h \
+		/usr/local/include/boost/predef/compiler/gcc.h \
+		/usr/local/include/boost/predef/compiler/greenhills.h \
+		/usr/local/include/boost/predef/compiler/hp_acc.h \
+		/usr/local/include/boost/predef/compiler/iar.h \
+		/usr/local/include/boost/predef/compiler/ibm.h \
+		/usr/local/include/boost/predef/compiler/intel.h \
+		/usr/local/include/boost/predef/compiler/kai.h \
+		/usr/local/include/boost/predef/compiler/llvm.h \
+		/usr/local/include/boost/predef/compiler/metaware.h \
+		/usr/local/include/boost/predef/compiler/metrowerks.h \
+		/usr/local/include/boost/predef/compiler/microtec.h \
+		/usr/local/include/boost/predef/compiler/mpw.h \
+		/usr/local/include/boost/predef/compiler/palm.h \
+		/usr/local/include/boost/predef/compiler/pgi.h \
+		/usr/local/include/boost/predef/compiler/sgi_mipspro.h \
+		/usr/local/include/boost/predef/compiler/sunpro.h \
+		/usr/local/include/boost/predef/compiler/tendra.h \
+		/usr/local/include/boost/predef/compiler/visualc.h \
+		/usr/local/include/boost/predef/compiler/watcom.h \
+		/usr/local/include/boost/predef/library.h \
+		/usr/local/include/boost/predef/library/c.h \
+		/usr/local/include/boost/predef/library/c/_prefix.h \
+		/usr/local/include/boost/predef/detail/_cassert.h \
+		/usr/local/include/boost/predef/library/c/gnu.h \
+		/usr/local/include/boost/predef/library/c/uc.h \
+		/usr/local/include/boost/predef/library/c/vms.h \
+		/usr/local/include/boost/predef/library/c/zos.h \
+		/usr/local/include/boost/predef/library/std.h \
+		/usr/local/include/boost/predef/library/std/_prefix.h \
+		/usr/local/include/boost/predef/detail/_exception.h \
+		/usr/local/include/boost/predef/library/std/cxx.h \
+		/usr/local/include/boost/predef/library/std/dinkumware.h \
+		/usr/local/include/boost/predef/library/std/libcomo.h \
+		/usr/local/include/boost/predef/library/std/modena.h \
+		/usr/local/include/boost/predef/library/std/msl.h \
+		/usr/local/include/boost/predef/library/std/roguewave.h \
+		/usr/local/include/boost/predef/library/std/sgi.h \
+		/usr/local/include/boost/predef/library/std/stdcpp3.h \
+		/usr/local/include/boost/predef/library/std/stlport.h \
+		/usr/local/include/boost/predef/library/std/vacpp.h \
+		/usr/local/include/boost/predef/os.h \
+		/usr/local/include/boost/predef/os/aix.h \
+		/usr/local/include/boost/predef/os/amigaos.h \
+		/usr/local/include/boost/predef/os/android.h \
+		/usr/local/include/boost/predef/os/beos.h \
+		/usr/local/include/boost/predef/os/bsd.h \
+		/usr/local/include/boost/predef/os/macos.h \
+		/usr/local/include/boost/predef/os/ios.h \
+		/usr/local/include/boost/predef/os/bsd/bsdi.h \
+		/usr/local/include/boost/predef/os/bsd/dragonfly.h \
+		/usr/local/include/boost/predef/os/bsd/free.h \
+		/usr/local/include/boost/predef/os/bsd/open.h \
+		/usr/local/include/boost/predef/os/bsd/net.h \
+		/usr/local/include/boost/predef/os/cygwin.h \
+		/usr/local/include/boost/predef/os/haiku.h \
+		/usr/local/include/boost/predef/os/hpux.h \
+		/usr/local/include/boost/predef/os/irix.h \
+		/usr/local/include/boost/predef/os/linux.h \
+		/usr/local/include/boost/predef/os/os400.h \
+		/usr/local/include/boost/predef/os/qnxnto.h \
+		/usr/local/include/boost/predef/os/solaris.h \
+		/usr/local/include/boost/predef/os/unix.h \
+		/usr/local/include/boost/predef/os/vms.h \
+		/usr/local/include/boost/predef/other.h \
+		/usr/local/include/boost/predef/other/endian.h \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_gcc_arm.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_interlocked.hpp \
+		/usr/local/include/boost/smart_ptr/detail/spinlock_nt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_pt.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_clang.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_snc_ps3.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_acc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ia64.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_vacpp_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_cw_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_ppc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_mips.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_sync.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_gcc_sparc.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_w32.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_base_aix.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
+		/usr/local/include/boost/smart_ptr/detail/quick_allocator.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lightweight_mutex.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_nop.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_pthreads.hpp \
+		/usr/local/include/boost/smart_ptr/detail/lwm_win32_cs.hpp \
+		/usr/local/include/boost/type_traits/type_with_alignment.hpp \
+		/usr/local/include/boost/preprocessor/list/transform.hpp \
+		/usr/local/include/boost/preprocessor/list/append.hpp \
+		/usr/local/include/boost/type_traits/alignment_of.hpp \
+		/usr/local/include/boost/type_traits/detail/size_t_trait_def.hpp \
+		/usr/local/include/boost/mpl/size_t.hpp \
+		/usr/local/include/boost/mpl/size_t_fwd.hpp \
+		/usr/local/include/boost/type_traits/detail/size_t_trait_undef.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp \
+		/usr/local/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+		/usr/local/include/boost/smart_ptr/detail/operator_bool.hpp \
+		/usr/local/include/boost/io/detail/quoted_manip.hpp \
+		/usr/local/include/boost/io/ios_state.hpp \
+		/usr/local/include/boost/io_fwd.hpp \
+		/usr/local/include/boost/functional/hash_fwd.hpp \
+		/usr/local/include/boost/functional/hash/hash_fwd.hpp \
+		/usr/local/include/boost/filesystem/operations.hpp \
+		/usr/local/include/boost/detail/scoped_enum_emulation.hpp \
+		/usr/local/include/boost/core/scoped_enum.hpp \
+		/usr/local/include/boost/detail/bitmask.hpp \
+		/usr/local/include/boost/range/mutable_iterator.hpp \
+		/usr/local/include/boost/range/config.hpp \
+		/usr/local/include/boost/range/range_fwd.hpp \
+		/usr/local/include/boost/range/detail/extract_optional_type.hpp \
+		/usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp \
+		/usr/local/include/boost/range/const_iterator.hpp \
+		/usr/local/include/boost/filesystem/convenience.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qWaitDialog.o ../src/interface/qWaitDialog.cpp
 
 cameraModel.o: ../src/camera_model/cameraModel.cpp ../src/camera_model/cameraModel.h \
 		/usr/local/include/opencv2/opencv.hpp \
@@ -10923,6 +11750,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_ipmImageViewer.o: moc_ipmImageViewer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ipmImageViewer.o moc_ipmImageViewer.cpp
+
+moc_qWaitDialog.o: moc_qWaitDialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qWaitDialog.o moc_qWaitDialog.cpp
 
 moc_ipmtransformworker.o: moc_ipmtransformworker.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ipmtransformworker.o moc_ipmtransformworker.cpp
