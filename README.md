@@ -64,11 +64,6 @@ result to distorate the source image.
 
 ![Start_Up_Example](/images/start_up_example.png)
 
-`Camera Calibration Example`
-
-![Camera_Calibration_Example](/images/cam_calib_example.png)
-![Camera_Calibration_Process_Example](/images/cam_calib_corner_example.png)
-
 ### Adaptive Inverse Perspective Mapping Module
 Select the Ipm Para Panel and adjust all the parameters needed to generate
 ipm images.Here is a simple glimpse at the description of the parameters.
@@ -93,22 +88,11 @@ future batch process work.
 Follows are two ipm images generated
 with different parameter.
 
-
-`Ipm Parameter Example`
-
-![Ipm_Para_Example](/images/ipm_para_source.jpg)
-![Ipm_Para_Example](/images/ipm_para_example.png)
-![Ipm_Para_Example](/images/ipm_para_example_2.png)
-
 ### Batch Process Ipm Module
 Select the Ipm Exec Panel and fill in the process parameter. Only static 
 model was released for now and the model will use the parameter which was 
 set on the Ipm Para Panel to batch generate the ipm images in the ccd dir.
 The progress and ipm images will show in the work panel.
-
-`Batch process Example`
-
-![Batch_Process_Example](/images/batch_process_example.png)
 
 ### Short cuts
 The client support a few kinds of short cuts and tools to allow you 
@@ -122,31 +106,3 @@ value in the status bar.
 **ctrl + scroll down**: image zoom out
 
 **ctrl + scroll up**: image zoom in
-
-### Future Release
-The batch processed ipm image may be stitched together to get the ipm
-map.This kind of map will overcome the drawback of occlusion in 
-tradition map.To make this kind of map you need know the geographic 
-coordinates of every pictures.A lot of camera will record this 
-information in the image EXIF data for example Iphone.
-
-Since the image are captures on pretty high frequency then you can use
-a small roi of the origin image to generate a high resolution ipm stitch
-result image.
-
-Here are some examples of ipm stitch result
-
-`Ipm Stitch Panel Example`
-
-![Ipm_Stitch_Example](/images/ipm_stitch_example.png)
-
-`Ipm Stitch Result Example`
-
-![Ipm_Stitch_Result_Example](/images/ipm_stitch_result.png)
-
-`Ipm Stitch Result Details Example`
-
-![Ipm_Stitch_Result_Details_Example](/images/ipm_stitch_result_details.png)
-
-From the stitch result and the detatils example image you may find the
-stitch result can show the road details pretty well.
